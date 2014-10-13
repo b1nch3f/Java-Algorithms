@@ -139,12 +139,16 @@ public class BinaryTree {
         while (focusNode.key != key) {
 
             if (key < focusNode.key) {
+
                 focusNode = focusNode.leftChild;
+
             } else {
+
                 focusNode = focusNode.rightChild;
             }
 
             if (focusNode == null)
+
                 return null;
 
         }
