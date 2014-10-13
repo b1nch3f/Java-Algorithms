@@ -3,10 +3,6 @@ package com.algorithms;
 public class BinaryTree {
 
     public Node root;
-    
-    public int maxKey = 0;
-    
-    public int minKey = 0;
 
     public void addNode(int key, String name) {
 
@@ -133,89 +129,48 @@ public class BinaryTree {
     }
     
     public void findMax(Node focusNode) {
-    	if (focusNode != null) {
+        if (focusNode != null) {
 
-            // Traverse the left node
+            //check if rightChild exist
+            if (focusNode.rightChild == null) {
+                System.out.println(focusNode.key);
+                return;
+            }
 
-    		findMax(focusNode.leftChild);
+            Node newNode = focusNode.rightChild;
 
-            // Visit the currently focused on node
-
-            if (maxKey < focusNode.key) {
-				//System.out.println(focusNode.key);
-				maxKey = focusNode.key;
-			}
-
-            // Traverse the right node
-
-            findMax(focusNode.rightChild);
+            findMax(newNode);
 
         }
-
-    }
-    
-    public int getMaxKey(Node focusNode) {
-    	findMax(focusNode);
-    	System.out.println("fetching max key");
-    	return maxKey;
     }
     
     public void findMin(Node focusNode) {
     	if (focusNode != null) {
 
-            // Traverse the left node
+            //check if leftChild exist
+            if (focusNode.leftChild == null) {
+                System.out.println(focusNode.key);
+                return;
+            }
 
-    		findMin(focusNode.leftChild);
+            Node newNode = focusNode.leftChild;
 
-            // Visit the currently focused on node
-
-            if (minKey > focusNode.key) {
-				//System.out.println(focusNode.key);
-            	minKey = focusNode.key;
-			}
-
-            // Traverse the right node
-
-            findMin(focusNode.rightChild);
+            findMin(newNode);
 
         }
-
-    }
-    
-    public int getMinKey(Node focusNode) {
-    	findMax(focusNode);
-    	System.out.println("fetching min key");
-    	return minKey;
     }
 
     public Node findNode(int key) {
 
-        // Start at the top of the tree
-
         Node focusNode = root;
-
-        // While we haven't found the com.algorithms.Node
-        // keep looking
 
         while (focusNode.key != key) {
 
-            // If we should search to the left
-
             if (key < focusNode.key) {
-
-                // Shift the focus com.algorithms.Node to the left child
-
                 focusNode = focusNode.leftChild;
-
             } else {
-
-                // Shift the focus com.algorithms.Node to the right child
-
                 focusNode = focusNode.rightChild;
-
             }
-
-            // The node wasn't found
 
             if (focusNode == null)
                 return null;
