@@ -2,11 +2,15 @@ package com.algorithms;
 
 public class BinaryTree {
 
-    Node root;
+    public Node root;
+    
+    public int maxKey = 0;
+    
+    public int minKey = 0;
 
     public void addNode(int key, String name) {
 
-        // Create a new com.algorithms.Node and initialize it
+        // Create a new Node and initialize it
 
         Node newNode = new Node(key, name);
 
@@ -18,12 +22,12 @@ public class BinaryTree {
 
         } else {
 
-            // Set root as the com.algorithms.Node we will start
+            // Set root as the Node we will start
             // with as we traverse the tree
 
             Node focusNode = root;
 
-            // Future parent for our new com.algorithms.Node
+            // Future parent for our new Node
 
             Node parent;
 
@@ -86,7 +90,7 @@ public class BinaryTree {
 
             // Traverse the left node
 
-            preorderTraverseTree(focusNode.leftChild);
+        	inOrderTraverseTree(focusNode.leftChild);
 
             // Visit the currently focused on node
 
@@ -94,20 +98,21 @@ public class BinaryTree {
 
             // Traverse the right node
 
-            preorderTraverseTree(focusNode.rightChild);
+            inOrderTraverseTree(focusNode.rightChild);
 
         }
 
     }
 
-    public void preorderTraverseTree(Node focusNode) {
+    public void preOrderTraverseTree(Node focusNode) {
 
         if (focusNode != null) {
 
             System.out.println(focusNode);
 
-            preorderTraverseTree(focusNode.leftChild);
-            preorderTraverseTree(focusNode.rightChild);
+            preOrderTraverseTree(focusNode.leftChild);
+            
+            preOrderTraverseTree(focusNode.rightChild);
 
         }
 
@@ -117,13 +122,70 @@ public class BinaryTree {
 
         if (focusNode != null) {
 
-            preorderTraverseTree(focusNode.leftChild);
-            preorderTraverseTree(focusNode.rightChild);
+        	postOrderTraverseTree(focusNode.leftChild);
+        	
+        	postOrderTraverseTree(focusNode.rightChild);
 
             System.out.println(focusNode);
 
         }
 
+    }
+    
+    public void findMax(Node focusNode) {
+    	if (focusNode != null) {
+
+            // Traverse the left node
+
+    		findMax(focusNode.leftChild);
+
+            // Visit the currently focused on node
+
+            if (maxKey < focusNode.key) {
+				//System.out.println(focusNode.key);
+				maxKey = focusNode.key;
+			}
+
+            // Traverse the right node
+
+            findMax(focusNode.rightChild);
+
+        }
+
+    }
+    
+    public int getMaxKey(Node focusNode) {
+    	findMax(focusNode);
+    	System.out.println("fetching max key");
+    	return maxKey;
+    }
+    
+    public void findMin(Node focusNode) {
+    	if (focusNode != null) {
+
+            // Traverse the left node
+
+    		findMin(focusNode.leftChild);
+
+            // Visit the currently focused on node
+
+            if (minKey > focusNode.key) {
+				//System.out.println(focusNode.key);
+            	minKey = focusNode.key;
+			}
+
+            // Traverse the right node
+
+            findMin(focusNode.rightChild);
+
+        }
+
+    }
+    
+    public int getMinKey(Node focusNode) {
+    	findMax(focusNode);
+    	System.out.println("fetching min key");
+    	return minKey;
     }
 
     public Node findNode(int key) {
