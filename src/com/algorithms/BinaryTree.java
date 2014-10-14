@@ -58,7 +58,7 @@ public class BinaryTree {
 
         if (focusNode != null) {
 
-            inOrderTraverseTree(focusNode.leftChild);
+        	inOrderTraverseTree(focusNode.leftChild);
 
             System.out.println(focusNode);
 
@@ -149,6 +149,40 @@ public class BinaryTree {
     		
     		
     		
+		}
+    	
+    }
+    
+    public void bfs(Node focusNode) {
+    	
+    	if (focusNode == null) 
+    		
+    		return;
+    	
+    	Stack<Node> firstStack = new Stack<Node>();
+    	
+    	firstStack.push(focusNode);
+    	
+    	while (firstStack.empty() == false ) {
+			
+    		while (firstStack.empty() == false) {
+				
+    			focusNode = firstStack.peek();
+    			
+    			firstStack.pop();
+    			
+    			System.out.println(focusNode.key);
+    			
+    			if (focusNode.rightChild != null) 
+					
+    				firstStack.push(focusNode.rightChild);
+    			
+    			if (focusNode.leftChild != null) 
+					
+    				firstStack.push(focusNode.leftChild);
+    			
+			}
+   		
 		}
     	
     }
