@@ -1,5 +1,7 @@
 package com.algorithms;
 
+import java.util.Stack;
+
 public class BinaryTree {
 
     public Node root;
@@ -92,6 +94,63 @@ public class BinaryTree {
 
         }
 
+    }
+    
+    
+    public void spiralOrderTraversal(Node focusNode) {
+    	
+    	if (focusNode == null) 
+    		
+    		return;
+    	
+    	Stack<Node> firstStack = new Stack<Node>();
+    	
+    	Stack<Node> secondStack = new Stack<Node>();
+    	
+    	firstStack.push(focusNode);
+    	
+    	while (firstStack.empty() == false || secondStack.empty() == false) {
+			
+    		while (firstStack.empty() == false) {
+				
+    			focusNode = firstStack.peek();
+    			
+    			firstStack.pop();
+    			
+    			System.out.println(focusNode.key);
+    			
+    			if (focusNode.rightChild != null) 
+					
+    				secondStack.push(focusNode.rightChild);
+    			
+    			if (focusNode.leftChild != null) 
+					
+    				secondStack.push(focusNode.leftChild);
+    			
+			}
+    		
+    		while (secondStack.empty() == false) {
+				
+    			focusNode = secondStack.peek();
+    			
+    			secondStack.pop();
+    			
+    			System.out.println(focusNode.key);
+    			
+    			if (focusNode.rightChild != null) 
+					
+    				firstStack.push(focusNode.rightChild);
+    			
+    			if (focusNode.leftChild != null) 
+					
+    				firstStack.push(focusNode.leftChild);
+    			
+			}
+    		
+    		
+    		
+		}
+    	
     }
     
     public void findMax(Node focusNode) {
