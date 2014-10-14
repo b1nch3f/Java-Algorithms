@@ -58,7 +58,7 @@ public class BinaryTree {
 
         if (focusNode != null) {
 
-        	inOrderTraverseTree(focusNode.leftChild);
+            inOrderTraverseTree(focusNode.leftChild);
 
             System.out.println(focusNode);
 
